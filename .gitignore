@@ -1,0 +1,7 @@
+.idea
+__pycache__
+keras-contrib
+*.json
+*.csv
+*.tsv
+*.txt
