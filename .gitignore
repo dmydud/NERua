@@ -1,7 +1,9 @@
 .idea
 __pycache__
 keras-contrib
+data
 *.json
 *.csv
 *.tsv
 *.txt
+*.log
