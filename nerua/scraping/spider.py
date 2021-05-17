@@ -1,12 +1,16 @@
 import os
+import sys
 import scrapy
+import inspect
+from lxml import etree
 from time import sleep
+from pathlib import Path
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+from scrapy.crawler import CrawlerProcess
 
 
-PRAVDA_XML_FILE_PATH = os.path.join('..', 'data', 'pravda_spider_data.xml')
-TSN_XML_FILE_PATH = os.path.join('..', 'data', 'tsn_spider_data.xml')
+if not os.path.exists("spider_data"):
+    os.mkdir("spider_data")
 
 
 class PravdaNewsSpider(scrapy.Spider):
@@ -16,7 +20,7 @@ class PravdaNewsSpider(scrapy.Spider):
     def __init__(self, name=None, **kwargs):
         super(PravdaNewsSpider, self).__init__(name, **kwargs)
 
-        self.xml_file = open(PRAVDA_XML_FILE_PATH, 'w')
+        self.xml_file = open(Path(__file__).parent.parent.parent / "data" / "pravda_spider_data.text", "w")
         self.xml_file.write(f'<data from="pravda.com.ua">\n')
 
     def parse(self, response, **kwargs):
@@ -31,7 +35,7 @@ class PravdaNewsSpider(scrapy.Spider):
             )
 
     def parse_article(self, response):
-        self.xml_file.write(f'\t<text url="{response.url}">\n')
+        self.xml_file.write(f'\t<article url="{response.url}">\n')
 
         for paragraph in response.xpath('//div[@class="post_text"]/p[not(script)]'):
             self.xml_file.write(f"\t\t{paragraph.get()}\n")
@@ -42,7 +46,7 @@ class PravdaNewsSpider(scrapy.Spider):
         for paragraph in response.xpath('//div[@class="post__text"]/p'):
             self.xml_file.write(f"\t\t{paragraph.get()}\n")
 
-        self.xml_file.write("\t</text>\n")
+        self.xml_file.write("\t</article>\n")
 
     def __del__(self):
         self.xml_file.write(f"</data>\n")
@@ -56,7 +60,7 @@ class TsnNewsSpider(scrapy.Spider):
     def __init__(self, name=None, **kwargs):
         super(TsnNewsSpider, self).__init__(name, **kwargs)
 
-        self.xml_file = open(TSN_XML_FILE_PATH, 'w')
+        self.xml_file = open(Path(__file__).parent.parent.parent / "data" / "tsn_spider_data.text", "w")
         self.xml_file.write(f'<data from="tsn.ua">\n')
 
         self.driver = webdriver.Firefox()
@@ -81,15 +85,31 @@ class TsnNewsSpider(scrapy.Spider):
             yield scrapy.Request(response.urljoin(article_link.get_attribute("href")), callback=self.parse_article)
 
     def parse_article(self, response):
-        self.xml_file.write(f'\t<text url="{response.url}">\n')
+        self.xml_file.write(f'\t<article url="{response.url}">\n')
 
         for paragraph in response.xpath('//div[@class="c-card__box c-card__body"]/p'):
             self.xml_file.write(f"\t\t{paragraph.get()}\n")
 
-        self.xml_file.write("\t</text>\n")
+        self.xml_file.write("\t</article>\n")
 
     def __del__(self):
         self.xml_file.write(f"</data>\n")
         self.xml_file.close()
 
         self.driver.close()
+
+
+def _is_scrapy_spider(member) -> bool:
+    return inspect.isclass(member) and issubclass(getattr(sys.modules[__name__], member.__name__), scrapy.Spider)
+
+
+def run_spiders():
+    spider_classes = [
+        getattr(sys.modules[__name__], member[0])
+        for member in inspect.getmembers(sys.modules[__name__], _is_scrapy_spider)
+    ]
+
+    for spider_class in spider_classes:
+        process = CrawlerProcess()
+        process.crawl(spider_class)
+        process.start()
