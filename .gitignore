@@ -1,6 +1,5 @@
 .idea
 models
-main.py
 __pycache__
 keras-contrib
 data
@@ -9,3 +8,4 @@ data
 *.tsv
 *.txt
 *.log
+!nerua/label_config.json

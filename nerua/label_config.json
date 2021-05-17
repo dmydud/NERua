@@ -1,0 +1,134 @@
+[
+  {
+    "text": "PERSON",
+    "suffixKey": "p",
+    "backgroundColor": "#03A9F4",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "JOB",
+    "suffixKey": "j",
+    "backgroundColor": "#0277BD",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "ORG",
+    "suffixKey": "o",
+    "backgroundColor": "#3F51B5",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "PRODUCT",
+    "suffixKey": "i",
+    "backgroundColor": "#283593",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "GROUP",
+    "suffixKey": "8",
+    "backgroundColor": "#0D47A1",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "NORP",
+    "suffixKey": "n",
+    "backgroundColor": "#4CAF50",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "GPE",
+    "suffixKey": "c",
+    "backgroundColor": "#2E7D32",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "LOC",
+    "suffixKey": "l",
+    "backgroundColor": "#558B2F",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "GEOOBJ",
+    "suffixKey": "g",
+    "backgroundColor": "#8BC34A",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "FAC",
+    "suffixKey": "b",
+    "backgroundColor": "#9CCC65",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "WOA",
+    "suffixKey": "a",
+    "backgroundColor": "#FF6F00",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "LANG",
+    "suffixKey": "m",
+    "backgroundColor": "#FBC02D",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "LAW",
+    "suffixKey": "1",
+    "backgroundColor": "#5E35B1",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "PERCENT",
+    "suffixKey": "5",
+    "backgroundColor": "#CDDC39",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "MONEY",
+    "suffixKey": "4",
+    "backgroundColor": "#9E9D24",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "QUANTITY",
+    "suffixKey": "0",
+    "backgroundColor": "#AFB42B",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "ORDINAL",
+    "suffixKey": "3",
+    "backgroundColor": "#C0CA33",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "CARDINAL",
+    "suffixKey": "2",
+    "backgroundColor": "#D4E157",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "RELTIME",
+    "suffixKey": "7",
+    "backgroundColor": "#00BCD4",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "ABSTIME",
+    "suffixKey": "6",
+    "backgroundColor": "#0097A7",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "WAR",
+    "suffixKey": "w",
+    "backgroundColor": "#C62828",
+    "textColor": "#ffffff"
+  },
+  {
+    "text": "DISEASE",
+    "suffixKey": "z",
+    "backgroundColor": "#E91E63",
+    "textColor": "#ffffff"
+  }
+]
