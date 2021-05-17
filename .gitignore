@@ -1,4 +1,6 @@
 .idea
+models
+main.py
 __pycache__
 keras-contrib
 data
